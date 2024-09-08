@@ -78,7 +78,9 @@ dependencies {
 
     //Retrofit
     implementation(libs.retrofit)
-    implementation(libs.converter.scalars)
+    implementation(libs.converter.moshi)
+    implementation(libs.okhttp3)
+    implementation(libs.logging.interceptor)
 
     //Room
     implementation(libs.androidx.room.runtime)
