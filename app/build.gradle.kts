@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.kapt)
     alias(libs.plugins.google.devtools.ksp)
     alias(libs.plugins.google.dagger.hilt.android)
 }
@@ -19,6 +20,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+
+        ksp {
+            arg("room.schemaLocation", "$projectDir/schemas")
         }
     }
 
@@ -51,6 +56,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -71,16 +80,20 @@ dependencies {
 
     //Compose dependencies
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.activity.ktx)
 
     //Dagger Hilt
     implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
+    kapt(libs.hilt.android.compiler)
+    kapt(libs.androidx.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     //Retrofit
     implementation(libs.retrofit)
-    implementation(libs.converter.moshi)
     implementation(libs.okhttp3)
     implementation(libs.logging.interceptor)
+    implementation(libs.converter.moshi)
+    ksp(libs.moshi.kotlin.codegen)
 
     //Room
     implementation(libs.androidx.room.runtime)
