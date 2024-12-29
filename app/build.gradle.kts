@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.executemain.sunrisesunset"
+    namespace = "com.funcexec.sunrisesunset"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.executemain.sunrisesunset"
+        applicationId = "com.funcexec.sunrisesunset"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
